@@ -1,7 +1,7 @@
 import React from 'react';
 import { RadarVisualizer } from './RadarVisualizer';
 import { PredictionType } from '../types';
-import { Sparkles, Timer, Cpu, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { Sparkles, Timer, Cpu, ArrowUpRight, ArrowDownRight, Send, ExternalLink } from 'lucide-react';
 
 interface PredictionCardProps {
   nextPeriod: string;
@@ -13,6 +13,7 @@ interface PredictionCardProps {
   activeAlgorithmName: string;
   isAnalyzing: boolean;
   onInstantDraw?: () => void;
+  onOpenTelegram?: () => void;
 }
 
 export const PredictionCard: React.FC<PredictionCardProps> = ({
@@ -25,6 +26,7 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({
   activeAlgorithmName,
   isAnalyzing,
   onInstantDraw,
+  onOpenTelegram,
 }) => {
   const progressPercent = Math.min(100, Math.max(0, (secondsRemaining / totalCycleSeconds) * 100));
 
@@ -120,8 +122,33 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({
         </div>
       </div>
 
+      {/* VIP Telegram Group Callout Banner */}
+      {onOpenTelegram && (
+        <div className="mt-4 p-2.5 rounded-2xl bg-gradient-to-r from-sky-50 via-pink-50 to-sky-50 border border-sky-200/80 shadow-xs flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0 text-left">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#0088cc] to-[#34b7f1] text-white flex items-center justify-center shrink-0 shadow-xs">
+              <Send className="w-4 h-4 -translate-x-0.5 translate-y-0.5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-[11px] font-bold text-slate-800 truncate">
+                Join VIP Telegram Group
+              </div>
+              <div className="text-[9px] text-slate-500 font-medium truncate">
+                Daily 100% Sure Signals & Recovery Formula
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={onOpenTelegram}
+            className="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-[#0088cc] to-[#25a5e3] hover:from-[#25a5e3] hover:to-[#0088cc] text-white text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-xs transition-all active:scale-95 cursor-pointer"
+          >
+            Join <ExternalLink className="w-2.5 h-2.5" />
+          </button>
+        </div>
+      )}
+
       {/* Algorithm Status Bar */}
-      <div className="mt-4 pt-3 border-t border-pink-200/60 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#ff66a3]">
+      <div className="mt-3 pt-2.5 border-t border-pink-200/60 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#ff66a3]">
         <Cpu className="w-3.5 h-3.5 text-[#e60073]" />
         <span>Advanced Analysis System Active</span>
         <span className="text-slate-400">•</span>

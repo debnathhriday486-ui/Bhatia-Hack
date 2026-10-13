@@ -1,5 +1,5 @@
 import React from 'react';
-import { Crown, Volume2, VolumeX, ShieldCheck, LogOut, Zap, Clock, Flame } from 'lucide-react';
+import { Crown, Volume2, VolumeX, ShieldCheck, LogOut, Zap, Clock, Flame, Send } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 import { BgThemeType } from './ParticlesBackground';
 
@@ -12,6 +12,7 @@ interface HeaderProps {
   isOnline: boolean;
   bgTheme: BgThemeType;
   onCycleBgTheme: () => void;
+  onOpenTelegram: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -23,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
   isOnline,
   bgTheme,
   onCycleBgTheme,
+  onOpenTelegram,
 }) => {
   const getThemeLabel = (theme: BgThemeType) => {
     switch (theme) {
@@ -100,6 +102,19 @@ export const Header: React.FC<HeaderProps> = ({
           >
             {isFastMode ? <Zap className="w-3.5 h-3.5" /> : <Clock className="w-3.5 h-3.5 text-slate-500" />}
             <span className="text-[10px] hidden sm:inline">{isFastMode ? '15s' : '60s'}</span>
+          </button>
+
+          {/* Telegram VIP Button */}
+          <button
+            onClick={() => {
+              soundManager.playClick();
+              onOpenTelegram();
+            }}
+            title="Join Official VIP Telegram Group"
+            className="p-1.5 sm:px-2 rounded-xl border border-sky-300 bg-gradient-to-r from-[#0088cc] to-[#25a5e3] hover:from-[#25a5e3] hover:to-[#0088cc] text-white shadow-xs flex items-center gap-1 cursor-pointer active:scale-95 transition-all"
+          >
+            <Send className="w-3.5 h-3.5 -translate-x-0.5 translate-y-0.5" />
+            <span className="text-[10px] font-bold hidden sm:inline">VIP</span>
           </button>
 
           {/* Sound toggle */}

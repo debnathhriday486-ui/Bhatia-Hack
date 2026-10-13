@@ -406,6 +406,7 @@ export default function App() {
         isOnline={isOnline}
         bgTheme={bgTheme}
         onCycleBgTheme={handleCycleBgTheme}
+        onOpenTelegram={() => setIsTelegramOpen(true)}
       />
 
       {/* Main Single-Column Container */}
@@ -423,6 +424,7 @@ export default function App() {
               activeAlgorithmName={activeAlgorithmName}
               isAnalyzing={isAnalyzing}
               onInstantDraw={() => syncWithLiveAPI()}
+              onOpenTelegram={() => setIsTelegramOpen(true)}
             />
 
             {/* Live History Results Table */}

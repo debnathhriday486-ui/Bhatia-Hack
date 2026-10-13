@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Crown, KeyRound, ShieldCheck, ArrowRight, Lock, Eye, EyeOff, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Crown, KeyRound, ShieldCheck, ArrowRight, Lock, Eye, EyeOff, CheckCircle2, AlertCircle, Send, ExternalLink } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { soundManager } from '../utils/audio';
+import { getTelegramLink } from '../utils/telegramConfig';
 
 interface KeyAuthModalProps {
   onAuthenticated: () => void;
@@ -156,8 +157,26 @@ export const KeyAuthModal: React.FC<KeyAuthModalProps> = ({ onAuthenticated }) =
           </button>
         </form>
 
+        {/* Telegram VIP Channel Call-to-action */}
+        <div className="mt-4 pt-3 border-t border-pink-100 space-y-2">
+          <p className="text-[11px] text-slate-500 font-medium text-center">
+            Don't have the VIP Passkey yet?
+          </p>
+          <a
+            href={getTelegramLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => soundManager.playClick()}
+            className="w-full py-2.5 px-4 rounded-xl font-bold text-xs bg-gradient-to-r from-[#0088cc] to-[#25a5e3] hover:from-[#25a5e3] hover:to-[#0088cc] text-white shadow-md shadow-sky-500/20 flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <Send className="w-3.5 h-3.5" />
+            Get VIP Key on Telegram Group
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
+
         {/* Footer Info */}
-        <div className="mt-6 pt-4 border-t border-pink-100 text-center">
+        <div className="mt-4 pt-3 border-t border-pink-100 text-center">
           <p className="text-[11px] text-slate-500 font-medium">
             Official System License • Version 3.0 PRO
           </p>
