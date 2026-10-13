@@ -1,0 +1,6 @@
+{
+  "name": "BHATIA x TRADER",
+  "description": "BHATIA x TRADER - Advanced WinGo 1M AI Prediction & Signal Analysis System",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
